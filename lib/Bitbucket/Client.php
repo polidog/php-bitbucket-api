@@ -52,6 +52,7 @@ class Client
 			throw new \InvalidArgumentException('You need to specify authentication method!');
 		}
 		$this->getHttpClient()->authenticate($username, $password);
+		return $this;
 	}
 	
 	/**

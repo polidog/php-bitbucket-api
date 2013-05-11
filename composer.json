@@ -1,10 +1,9 @@
 {
     "require": {
         "php": ">=5.3.3",
-		"psr/log": "dev-master",
 		"kriswallsmith/buzz":"dev-master"
     },	
     "autoload": {
-        "psr-0": {"Bitbucket": "lib"}
+        "psr-0": {"Hulu": "lib"}
     }
 }
