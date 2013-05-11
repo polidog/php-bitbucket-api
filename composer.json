@@ -1,9 +1,22 @@
 {
+	"name": "bitbucket-php-sdk",
+	"description": "Bitbuckct php unofficial sdk",
+	"keywords": ["sdk","bitbucket","api"],
+	"homepage": "https://github.com/polidog/Bitbucket",
+	"license"  : "MIT",
+	"authors": [
+		{
+			"name": "polidog",
+			"email": "polidogs@gmail.com",
+			"homepage": "http://www.polidog.jp"
+		}
+	],	
     "require": {
         "php": ">=5.3.3",
-		"kriswallsmith/buzz":"dev-master"
+		"kriswallsmith/buzz":"dev-master",
+		"phpunit/phpunit": "3.7.*"
     },	
     "autoload": {
-        "psr-0": {"Hulu": "lib"}
+        "psr-0": {"Bitbucket\\": "lib/"}
     }
 }

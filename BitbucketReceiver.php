@@ -1,6 +1,9 @@
 <?php
 require 'vendor/autoload.php';
-class BitbucketReceiver
+/**
+ * 
+ */
+class BitbucketProxy
 {
 	private $Bitbucket;
 	
