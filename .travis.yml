@@ -5,10 +5,8 @@ php:
   - 5.4
 
 before_script:
-  - composer install
+  - composer install --prefer-source
 
-script: phpunit --coverage-text -c ./tests/phpunit.xml
 
-notifications:
-  email:
-    - polidogs@gmail.com
+script: phpunit --coverage-text 
+
