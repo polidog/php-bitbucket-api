@@ -41,7 +41,7 @@ class Client
 				$api = new Api\Repositories($this);
 				break;
 			default:
-				throw new InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name));
+				throw new \InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name));
 		} 
 		
 		return $api;
