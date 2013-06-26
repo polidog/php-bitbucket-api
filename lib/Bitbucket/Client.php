@@ -29,7 +29,7 @@ class Client
 	}
 	
 	public function api($name) {
-		switch ($name) {
+		switch (strtolower($name)) {
 			case "user":
 			case "users":
 				$api = new Api\User($this);
@@ -39,6 +39,9 @@ class Client
 			case "repository":
 			case "repositories":
 				$api = new Api\Repositories($this);
+				break;
+			case "email":
+				$api = new Api\Email($this);
 				break;
 			default:
 				throw new \InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name));

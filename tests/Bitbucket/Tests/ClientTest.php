@@ -1,18 +1,17 @@
 <?php
+
 namespace Bitbucket\Tests;
 
 use Bitbucket\Client;
 use Bitbucket\HttpClient\HttpClient;
 
-class ClientTest extends \PHPUnit_Framework_TestCase
-{
-	
-	/* 
+class ClientTest extends \PHPUnit_Framework_TestCase {
+	/*
 	 * ------------------------------------------
 	 * test methods
 	 * ------------------------------------------
 	 */
-	
+
 	/**
 	 * @test
 	 * 
@@ -20,10 +19,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function shouldNotHavToPassHttpClientToConstructor() {
 		$client = new Client();
-		$this->assertInstanceOf('Bitbucket\HttpClient\HttpClient',$client->getHttpClient());
+		$this->assertInstanceOf('Bitbucket\HttpClient\HttpClient', $client->getHttpClient());
 	}
-	
-	
+
 	/**
 	 * @test
 	 * @expectedException InvalidArgumentException
@@ -34,22 +32,20 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 		$client = new Client($this->getHttpClientMock(array('addListener')));
 		$client->authenticate(null, null);
 	}
-	
-	
+
 	/**
 	 * @test 
 	 * @dataProvider getAuthenticationFullData
 	 */
-	public function shouldAuthenticateUsingAllGivenParameters($username,$password) {
-		
+	public function shouldAuthenticateUsingAllGivenParameters($username, $password) {
+
 		$httpClient = $this->getHttpClientMock(array('authenticate'));
 		$httpClient->expects($this->once())->method('authenticate')->with($username, $password);
-		
+
 		$client = new Client($httpClient);
 		$client->authenticate($username, $password);
 	}
-	
-	
+
 	/**
 	 * @test
 	 * 
@@ -59,7 +55,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 		$client = new Client();
 		$this->assertInstanceOf('Bitbucket\Api\ApiInterface', $client->api('user'));
 	}
-	
+
 	/**
 	 * @test
 	 * @expectedException InvalidArgumentException
@@ -70,30 +66,34 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 		$client = new Client();
 		$client->api('hoge');
 	}
-	
-	
-	/* 
+
+	/*
 	 * ------------------------------------------
 	 * not test methods
 	 * ------------------------------------------
-	 */	
-	
+	 */
+
 	/**
 	 * HTTP ClientのMockを取得する
 	 * @param array $methods
 	 * @return Bitbucket\HttpClient\HttpClientInterface
 	 */
-	public function getHttpClientMock(array $methods  = array()) {
+	public function getHttpClientMock(array $methods = array()) {
 		$methods = array_merge(array(
-			'get','post','put','delete','request','setOption','setHeaders'
-		),$methods);
-		
-		return $this->getMock('Bitbucket\HttpClient\HttpClientInterface',$methods);
+			'get', 'post', 'put', 'delete', 'request', 'setOption', 'setHeaders'
+				), $methods);
+
+		return $this->getMock('Bitbucket\HttpClient\HttpClientInterface', $methods);
 	}
 	
+	/**
+	 * Auth用のパスワード
+	 * @return array
+	 */
 	public function getAuthenticationFullData() {
 		return array(
-			array('hoge','fuga'),
+			array('hoge', 'fuga'),
 		);
 	}
+
 }

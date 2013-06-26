@@ -9,8 +9,9 @@ use Buzz\Listener\ListenerInterface;
 use Buzz\Listener\BasicAuthListener;
 
 use Buzz\Client\Curl;
-use Buzz\Message\Response;
-use Buzz\Message\Request;
+
+use Bitbucket\HttpClient\Message\Request;
+use Bitbucket\HttpClient\Message\Response;
 
 
 class HttpClient implements HttpClientInterface {
@@ -86,7 +87,6 @@ class HttpClient implements HttpClientInterface {
         $this->lastResponse = $response;
 		
 		$this->executeListeners('postSend', $request, $response);
-
 		return $response;
 	}
 
@@ -112,6 +112,11 @@ class HttpClient implements HttpClientInterface {
 	}
 	
 	
+	/**
+	 * @param string $httpMethod
+	 * @param string $url
+	 * @return \Bitbucket\HttpClient\Message\Request
+	 */
 	protected function createRequest($httpMethod, $url) {
 		$request = new Request($httpMethod);
 		$request->setHeaders($this->headers);
@@ -119,6 +124,9 @@ class HttpClient implements HttpClientInterface {
 		return $request;
 	}
 
+	/**
+	 * @return \Bitbucket\HttpClient\Message\Response
+	 */
 	protected function createResponse() {
 		return new Response();
 	}
