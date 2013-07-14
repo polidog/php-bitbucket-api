@@ -66,6 +66,15 @@ class Client
 		return $this;
 	}
 	
+	
+	public function base64Authenticate($base64) {
+		if (is_null($base64)) {
+			throw new \InvalidArgumentException('You need to specify authentication method!');
+		}
+		$this->getHttpClient()->base64Authenticate($base64);
+		return $this;
+	}
+	
 	/**
 	 * 
 	 * @return HttpClient\HttpClient
