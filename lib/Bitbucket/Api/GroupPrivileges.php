@@ -26,4 +26,16 @@ class GroupPrivileges extends AbstractApi
 	public function find($username,$repository) {
 		return $this->get("group-privileges/".$username."/".$repository);
 	}
+	
+	/**
+	 * 権限を付与する
+	 * @param string $username
+	 * @param string $repository
+	 * @param string $auth
+	 * @return array
+	 */
+	public function add($username, $repository, $auth) {
+		return $this->put("group-privileges/".$username."/".$repository,array($auth));
+	}
+	
 }
