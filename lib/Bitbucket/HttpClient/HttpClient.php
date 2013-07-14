@@ -99,6 +99,10 @@ class HttpClient implements HttpClientInterface {
 		$this->addListener(new BasicAuthListener($username,$password));
 	}
 	
+	public function base64Authenticate($baseHash) {
+		$this->addListener(new Listener\Base64AuthListener($baseHash));
+	}
+	
 	public function addListener(ListenerInterface $listener) {
 		$this->listeners[get_class($listener)] = $listener;
 	}
