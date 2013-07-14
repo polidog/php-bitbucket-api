@@ -10,7 +10,11 @@ class Repositories extends AbstractApi
 		parent::__call($name,$arguments);
 	}
 	
-	
+	/**
+	 * show repositorys
+	 * @param string $name repository name
+	 * @return array
+	 */
 	public function find($name) {
 		return $this->get('repositories',array('name' => $name));
 	}

@@ -43,6 +43,10 @@ class Client
 			case "email":
 				$api = new Api\Email($this);
 				break;
+			case "group":
+			case "groups":
+				$api = new Api\Groups($this);
+				break;
 			default:
 				throw new \InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name));
 		} 
