@@ -47,6 +47,10 @@ class Client
 			case "groups":
 				$api = new Api\Groups($this);
 				break;
+			case "group_privileges":
+			case "group-privileges":
+				$api = new Api\GroupPrivileges($this);
+				break;
 			default:
 				throw new \InvalidArgumentException(sprintf('Undefined api instance called: "%s"', $name));
 		} 
